@@ -1,8 +1,8 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
-const button = document.querySelector(".container button");
+//const button = document.querySelector(".container button");
 const jokeDiv = document.querySelector(".container .joke p");
-
+const button = document.getElementById("#btnjoke");
 document.addEventListener("DOMContentLoaded", getJock);
 
 button.addEventListener("click", getJock);
@@ -23,6 +23,7 @@ async function getJock() {
         jokeDiv.innerHTML = jokeObj.joke;
     }
     console.log(jokeData);
+    console.log(jokeObj.message);
 }
 // *********************
 // This Code is for only the floating card in right bottom corner
