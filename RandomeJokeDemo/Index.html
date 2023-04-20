@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="joke">
+                What do you call a fashionable lawn statue with an excellent sense of rhythmn?
+            </div>
+            <p></p>
+            <button>Get a Dad Joke</button>
+        </div>
+    </section>
+    <script type="text/javascript">
+        debugger;
+        const button = document.querySelector('.container button');
+        const joke = document.querySelector('.container p');
+
+        button.addEventListener('click', getJoke);
+        async function getJoke() {
+            const jokeData = await fetch('https://dad-jokes.p.rapidapi.com/random/joke', {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            const jokeobj = await jokeData.json();
+            console.log(jokeobj)
+        }
+
+
+    </script>
+</body>
+</html>
