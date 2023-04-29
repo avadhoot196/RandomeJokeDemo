@@ -1,28 +1,32 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
-//const button = document.querySelector(".container button");
-const jokeDiv = document.querySelector(".container .joke p");
-const button = document.getElementById("#btnjoke");
-document.addEventListener("DOMContentLoaded", getJock);
+const button = document.querySelector('.container button');
+const jokeDiv = document.querySelector('.container .joke p');
+//const button = document.getElementById("#btnjoke");
+document.addEventListener("DOMContentLoaded", getJoke());
 
-button.addEventListener("click", getJock);
+button.addEventListener("click", getJoke);
 
-async function getJock() {
+async function getJoke() {
     debugger;
-    const jokeData = await fetch("https://dad-jokes.p.rapidapi.com/random/joke", {
+    const jokeData = await fetch('https://dad-jokes.p.rapidapi.com/random/joke', {
         headers: {
-            'X-RapidAPI-Key': '41c14c778bmsh16d8457c505e5ffp14e6f5jsna650355377da',
-            'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
+            'Accept':'application/json',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'x-rapidapi-key': '41c14c778bmsh16d8457c505e5ffp14e6f5jsna650355377da',
+            'x-rapidapi-host': 'dad-jokes.p.rapidapi.com'
+           
         }
     });
     const jokeObj = await jokeData.json();
-    if (jokeObj.joke == "undefined") {
+    if (jokeObj.body[0].punchline == "undefined") {
         jokeDiv.innerHTML = jokeObj.message;
     }
     else {
-        jokeDiv.innerHTML = jokeObj.joke;
+        jokeDiv.innerHTML = jokeObj.body[0].punchline;
     }
-    console.log(jokeData);
+    console.log(jokeObj.body[0].punchline);
     console.log(jokeObj.message);
 }
 // *********************
